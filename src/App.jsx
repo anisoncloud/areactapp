@@ -2,6 +2,7 @@ import Header from "./component/Header";
 import Hero from "./component/Hero";
 import ContactForm from './component/ContactForm';
 import Footer from "./component/Footer";
+import { useRef } from "react";
 
 const loginStatus = (status)=>{
   if (status) {
@@ -12,6 +13,7 @@ const loginStatus = (status)=>{
 }
 
 
+
 const App = () => {
   let marks=79;
   let city = ['Dhaka', 'Chittagong', 'Khulna', 'Rajshahi', ]
@@ -20,6 +22,18 @@ const App = () => {
     age: 50,
     city : "Dhaka"
   }
+
+  const btnClick = ()=>{
+    alert("Say Hello");
+  }
+
+  const postFormSubmit = (event)=>{
+    event.preventDefault();
+    alert("Submission Ok");
+  }
+
+  
+  
   return (
     <div>
       {marks>80?<h1>Nice result</h1>:<h1>Avarage Result</h1>}
@@ -36,7 +50,18 @@ const App = () => {
           }
         }
       )()}
+      <form>
+        <input placeholder="your name"/>
+        <button onClick={postFormSubmit}>Form Submit</button>
+      </form>
       <Header></Header>
+      
+      
+      
+      
+      
+      
+      
       {loginStatus(false)}
       <ul>
       {
@@ -46,7 +71,7 @@ const App = () => {
       }
       {(()=>{})()}
       </ul>
-      <Hero title="This is the Hero Section" item={itemObj}/>
+      <Hero title="This is the Hero Section" item={itemObj} heroBtnClick = {btnClick}/>
       <ContactForm/>
       <Footer/>
     </div>
