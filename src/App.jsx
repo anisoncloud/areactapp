@@ -32,8 +32,31 @@ const App = () => {
     alert("Submission Ok");
   }
 
+  const myTitle = useRef();
+  const buttonUpdate = ()=>{
+    myTitle.current.innerText="This is the chage text";
+  }
   
-  
+  let firstName, lastName=useRef();
+
+  const clickMyButton = ()=>{
+    let fName= firstName.value;
+    let lName = lastName.value;
+    alert(fName +"  "+ lName );
+  }
+
+  let myImage = useRef();
+  const changeImage = ()=>{
+    myImage.current.src="https://placehold.co/600x400?text=Hello+World";
+    myImage.current.setAttribute('width', '200px')
+  }
+  let myHeadline = useRef();
+  const changeClass = ()=>{
+    myHeadline.current.classList.remove('display-1');
+    myHeadline.current.classList.add('display-5')
+    myHeadline.current.classList.add('text-danger')
+  }
+
   return (
     <div>
       {marks>80?<h1>Nice result</h1>:<h1>Avarage Result</h1>}
@@ -50,16 +73,24 @@ const App = () => {
           }
         }
       )()}
+      <h1 className="display-1" ref={myHeadline}>This is the Headline</h1>
+      <button onClick={changeClass} >Change class</button>
+      <input ref={(a)=>firstName=a} /><br/>
+      <input ref={(a)=>lastName=a} /><br/>
+      <button onClick={clickMyButton}>Click for Alert</button>
+
       <form>
         <input placeholder="your name"/>
         <button onClick={postFormSubmit}>Form Submit</button>
       </form>
       <Header></Header>
+      <h1 ref={myTitle}></h1>
+      <button onClick={buttonUpdate}>Click Here</button>
       
       
       
-      
-      
+      <img ref={myImage} src="https://placehold.co/600x400" /><br/>
+      <button onClick={changeImage}>Change Image</button>
       
       
       {loginStatus(false)}
